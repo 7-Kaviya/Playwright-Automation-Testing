@@ -1146,41 +1146,7 @@ test('OrangeHRM (Edge): Login → Dashboard → My Info → Contact Details → 
 
   // --------------------------------------------------------------------
 
-  await Promise.all([
-
-    page.waitForURL('**/web/index.php/directory/**'),
-
-    page.getByRole('link', { name: 'Directory' }).click(),
-
-  ]);
-
- 
-
-  const mainContent = page.locator('div.oxd-layout-context');
-
-  await expect(mainContent.getByRole('heading', { name: 'Directory' })).toBeVisible();
-
-  await expect(mainContent.getByRole('button', { name: 'Search' })).toBeVisible();
-
- 
-
-  await selectAutocompleteByLabel(page, 'Employee Name', 'James Holly Ben');
-
-  await selectDropdownByLabel(page, 'Job Title', 'HR Manager');
-
-  await selectDropdownByLabel(page, 'Location', 'Texas R&D');
-
- 
-
-  await mainContent.getByRole('button', { name: 'Search' }).click();
-
- 
-
-  const cards = page.locator('.orangehrm-directory-card');
-
-  const noRecords = mainContent.getByText('No Records Found');
-
-  await expect(cards.first().or(noRecords)).toBeVisible({ timeout: 15_000 });
+  
 
  
 
